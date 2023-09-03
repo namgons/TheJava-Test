@@ -1,6 +1,6 @@
 package com.thejavatest;
 
-import jdk.jfr.Enabled;
+import com.thejavatest.domain.Study;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.EnabledOnJre;
 import org.junit.jupiter.api.condition.EnabledOnOs;
