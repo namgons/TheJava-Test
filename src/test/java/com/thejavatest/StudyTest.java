@@ -30,10 +30,12 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName("스터디 테스트")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyTest {
 
     @Test
     @DisplayName("스터디 만들기")
+    @Order(1)
     void create_new_study() {
 //        Study study = new Study(-10);
 //        assertNotNull(study);
@@ -66,6 +68,7 @@ class StudyTest {
 //    @EnabledOnOs(OS.MAC)
     @EnabledOnOs({ OS.MAC, OS.LINUX })
     @EnabledOnJre({ JRE.JAVA_8, JRE.JAVA_17 })
+    @Order(2)
     void localTest() {
         String testEnv = System.getenv("TEST_ENV");
         System.out.println(testEnv);
