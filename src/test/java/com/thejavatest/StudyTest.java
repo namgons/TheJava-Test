@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 @DisplayName("스터디 테스트")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class StudyTest {
 
     @Test
