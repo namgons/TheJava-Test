@@ -67,7 +67,7 @@ class StudyTest {
         assertThat(study.getLimit()).isGreaterThan(0);
     }
 
-    @Test
+    @FastTest
     void create_new_study_again() {
         System.out.println("create1");
     }
