@@ -12,6 +12,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -47,6 +49,7 @@ class StudyServiceTest {
 
     @Test
     void createStudyService() {
+        //given
         StudyService studyService = new StudyService(memberService, studyRepository);
         assertNotNull(studyService);
 
@@ -56,15 +59,22 @@ class StudyServiceTest {
 
         Study study = new Study(10, "테스트");
 
-        when(memberService.findById(1L)).thenReturn(Optional.of(member));
-        when(studyRepository.save(study)).thenReturn(study);
+//        when(memberService.findById(1L)).thenReturn(Optional.of(member));
+//        when(studyRepository.save(study)).thenReturn(study);
 
+        given(memberService.findById(1L)).willReturn(Optional.of(member));
+        given(studyRepository.save(study)).willReturn(study);
+
+        //when
         studyService.createNewStudy(1L, study);
 
+        //then
         assertEquals(member.getId(), study.getOwnerId());
 
-        verify(memberService, times(1)).notify(study);
-        verify(memberService, never()).validate(any());
+//        verify(memberService, never()).validate(any());
+//        verify(memberService, times(1)).notify(study);
+        then(memberService).should(times(1)).notify(study);
+        then(memberService).shouldHaveNoMoreInteractions();
     }
 
 }
